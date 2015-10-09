@@ -1,0 +1,28 @@
+I. Normalize data
+   
+   1. Run normalize_twitter_data.py to convert the raw tweets that Diego generated to (user, dest, followers, friends) records with the dest normalized.
+
+   2. Run normalize_aol_data.py to do the same as above for the AOL data.
+
+II. Compute volume
+
+   1. Run compute_user_volume.py for both AOL and Twitter. This needs to be run on a machine with more memory like snowball. It may fail on karst for lack of memory.
+
+III. Sample
+
+   1. Run explore_user_volume.py for both AOL and Twitter to figure out how many users to sample and how many clicks per user.
+
+   2. Run create_samples.py for both AOL and Twitter with the parameters arrived at in the previous step.
+
+IV. Entropy
+
+   1. Run compute_entropy.py on the AOL and Twitter samples.
+   2. Run plot_entropy.py to plot the entropies computed above.
+
+V. Individual vs Collective Entropy
+
+   1. Run plot_individual_vs_collective_entropy.py to create scatter plots for both AOL and Twitter from the entropies computed above.
+
+VI. News
+
+   1. After normalizing the data in step I, run filter_non_news.py to create a separate news dataset, the do steps II-V on it.
