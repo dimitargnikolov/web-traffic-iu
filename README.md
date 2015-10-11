@@ -9,13 +9,7 @@ Preliminaries
        export TP="$TBASE/plots"
        export TD="$TBASE/data"
 
-   2. If you want to reproduce the full set of experiments:
-      2.1. Go to http://cnets.indiana.edu/groups/nan/webtraffic/click-dataset/ and request the full dataset of web requests.
-      2.2. Once you have the data, start from step I.
-
-   3. If you want to reproduce only the analysis without doing all the data filtering from scratch:
-      3.1. Start from the filtered dataset distributed with this README and go to step IV in this README.
-      3.2. If for whatever reason, you don't have the filtered dataset, go to Harvard Dataverse and download it from .
+   2. Go to http://cnets.indiana.edu/groups/nan/webtraffic/click-dataset/ and request the full dataset of web requests.
 
 I. Data preparation: granularity & convert to 3rd level domains.
    1. Create visit matrix files from the human requests click files: create_vm.py
