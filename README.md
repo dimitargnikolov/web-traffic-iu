@@ -1,8 +1,6 @@
 # Preliminaries
 1. This is the code to reproduce the experiments in [Dimitar G Nikolov, Diego F. M. Oliveira, Alessandro Flammini, Filippo Menczer. Measuring Online Social Bubbles, 2015](http://arxiv.org/abs/1502.07162).
-2. Make sure that the following environmental variables are created on your machine: TC, TR, TP, TD (short for Traffic Code, Traffic Results, Traffic Plots and Traffic Data, respectively).
-
-For example, one way to do this is to put the following lines in your .bashrc file.
+2. Make sure that the following environmental variables are created on your machine: TC, TR, TP, TD (short for Traffic Code, Traffic Results, Traffic Plots and Traffic Data, respectively). For example, one way to do this is to put the following lines in your .bashrc file.
 ```
 export TBASE="/l/nx/data/click/web-traffic"
 export TC="$TBASE/code"
@@ -10,7 +8,6 @@ export TR="$TBASE/results"
 export TP="$TBASE/plots"
 export TD="$TBASE/data"
 ```
-
 3. Go to http://cnets.indiana.edu/groups/nan/webtraffic/click-dataset/ and request the full dataset of web requests.
 
 # Data Preparation
