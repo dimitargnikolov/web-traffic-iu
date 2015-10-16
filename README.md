@@ -1,17 +1,22 @@
 # Preliminaries
-   1. Make sure that the following environmental variables are created on your machine: TC, TR, TP, TD (short for Traffic Code, Traffic Results, Traffic Plots and Traffic Data, respectively).
+1. This is the code to reproduce the experiments in [Dimitar G Nikolov, Diego F. M. Oliveira, Alessandro Flammini, Filippo Menczer. Measuring Online Social Bubbles, 2015](http://arxiv.org/abs/1502.07162).
+2. Make sure that the following environmental variables are created on your machine: TC, TR, TP, TD (short for Traffic Code, Traffic Results, Traffic Plots and Traffic Data, respectively).
 
-   For example, one way to do this is to put the following lines in your .bashrc file.
+For example, one way to do this is to put the following lines in your .bashrc file.
+```
+export TBASE="/l/nx/data/click/web-traffic"
+export TC="$TBASE/code"
+export TR="$TBASE/results"
+export TP="$TBASE/plots"
+export TD="$TBASE/data"
+```
 
-       export TBASE="/l/nx/data/click/web-traffic"
-       export TC="$TBASE/code"
-       export TR="$TBASE/results"
-       export TP="$TBASE/plots"
-       export TD="$TBASE/data"
+3. Go to http://cnets.indiana.edu/groups/nan/webtraffic/click-dataset/ and request the full dataset of web requests.
 
-   2. Go to http://cnets.indiana.edu/groups/nan/webtraffic/click-dataset/ and request the full dataset of web requests.
+# Data Preparation
 
-# Data preparation: granularity & convert to 3rd level domains.
+Scripts to allow changing the granularity of the data (day, week, month, etc.) and converting to 3rd and 2nd level domains.
+
    1. Create visit matrix files from the human requests click files: create_vm.py
    2. Change the granularity of the vm files from hour to day, from day to week and from day to month: 
       2.1. transform/change_gran_hour_to_day.py 
