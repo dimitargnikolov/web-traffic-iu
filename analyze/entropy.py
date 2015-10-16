@@ -1,4 +1,4 @@
-import sys, os, numpy
+import sys, os, numpy, random
 
 sys.path.append(os.getenv("TC"))
 from lib import read_vm_file
@@ -19,6 +19,10 @@ def read_counts_as_probs(src):
 
 def compute_gini(src):
 	counts = read_counts(src)
+	n = 5000
+	if n > len(counts):
+		n = len(counts)
+	counts = random.sample(counts, n)
 	gini = 0
 	for i in range(len(counts)):
 		for j in range(len(counts)):

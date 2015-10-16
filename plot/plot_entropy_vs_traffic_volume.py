@@ -45,7 +45,7 @@ def line_plot(result_file, dest, order=None, inset_result_file=None, inset_title
 	curves = []
 	for i in range(len(ys)):
 		curve = ax.plot(x, ys[i], linestyle="-", color=colors[i], marker=markers[i], markerfacecolor='none', markeredgecolor=colors[i])[0]
-		#ax.errorbar(x, ys[i], errors[i], color=colors[i])
+		#curve = ax.errorbar(x, ys[i], errors[i], color=colors[i])
 		curves.append(curve)
 	
 	# display a subfigure id if this is going to be part of a subfigure
@@ -109,6 +109,6 @@ if __name__ == "__main__":
 		os.path.join(os.getenv("TR"), "evstv-level2-month.txt"),
 		os.path.join(os.getenv("TP"), "entropy-vs-traffic-volume.pdf"), 
 		ylabel="Entropy", xlabel="Clicks", legend_pos="upper left", legend_cols=1,
-		order=[('email', 'Mail'), ('social', 'Social Medila'), ('search', 'Search')],
+		order=[('email', 'Mail'), ('social', 'Social Media'), ('search', 'Search')],
 		inset_result_file=os.path.join(os.getenv("TR"), "news-evstv-full-month.txt"), inset_title="News"
     )

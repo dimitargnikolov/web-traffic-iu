@@ -42,8 +42,8 @@ def run_in_parallel(src_files, dest):
 			writer.writerow(currrow)
 
 def main():
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "entropy-vs-volume", "categories", "*", "*.txt"))
-	dest = os.path.join(os.getenv("TR"), "evstv-level2-month.txt")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "entropy-vs-volume-new", "categories", "*", "*.txt"))
+	dest = os.path.join(os.getenv("TR"), "evstv-level2-month-new.txt")
 	if not os.path.exists(os.path.dirname(dest)):
 		os.makedirs(os.path.dirname(dest))
 	run_in_parallel(files, dest)

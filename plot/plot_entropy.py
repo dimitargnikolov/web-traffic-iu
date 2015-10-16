@@ -1,4 +1,4 @@
-import sys, os, matplotlib, argparse, csv, math, numpy, re
+import sys, os, matplotlib, argparse, csv, math, numpy as np, re
 
 matplotlib.use('Agg')
 
@@ -111,7 +111,7 @@ def pbox_plot(results_file, dest, order=None, inset_results_file=None, inset_tit
 
 	# plot the inset
 	if inset_results_file is not None:
-		inset_ax = plt.axes([.61, .10, .35, .34])
+		inset_ax = plt.axes([.66, .10, .3, .34])
 
 		inset_headers, inset_labels, inset_ys = read_results_file(inset_results_file)
 
@@ -134,9 +134,9 @@ def pbox_plot(results_file, dest, order=None, inset_results_file=None, inset_tit
 
 if __name__ == "__main__":
 	pbox_plot(
-		os.path.join(os.getenv("TR"), "hhi-level2.txt"),
-		os.path.join(os.getenv("TP"), "hhi-level2.pdf"), 
-		ylabel="Inverse HHI", order=[('email', 'Mail'), ('social', 'Social Media'), ('search', 'Search')]
-#		inset_results_file=os.path.join(os.getenv("TR"), "news-full-month-entropy.txt"), 
-#		inset_title="News"
+		os.path.join(os.getenv("TR"), "gini-level2.txt"),
+		os.path.join(os.getenv("TP"), "gini-level2.pdf"), 
+		ylabel="1 - Gini", order=[('email', 'Mail'), ('social', 'Social Media'), ('search', 'Search')],
+		inset_results_file=os.path.join(os.getenv("TR"), "news-gini-full.txt"), 
+		inset_title="News"
     )

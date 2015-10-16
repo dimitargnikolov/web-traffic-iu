@@ -102,7 +102,8 @@ def run_in_parallel(src_files, dest_dir, sample_sizes):
 	
 def main():
 	sample_sizes = []
-	for n in numpy.arange(0.01, 8.21, 0.2):
+	#for n in numpy.arange(0.01, 6.5, 0.2): # news
+	for n in numpy.arange(0.01, 8.21, 0.2): # all
 		sample_sizes.append(int(10**n))
 
 	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "categories", "*", "*", "*", "*.txt"))

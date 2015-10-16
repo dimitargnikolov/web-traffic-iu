@@ -1,7 +1,7 @@
 import sys, os, numpy, csv, glob
 from multiprocessing import Pool
 
-sys.path.append(os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), '..'))
+sys.path.append(os.getenv("TC"))
 from lib import read_vm_file, domain_level, nth_level_domain, fnmatches_multiple, is_ip_address, normalize_url
 
 UNWANTED_DOMAINS = frozenset([
@@ -209,18 +209,23 @@ def remove_unwanted(src, dest):
 	with open(dest, 'w') as destf:
 		writer = csv.writer(destf, delimiter="\t")
 		for referrer, target, num_clicks in data:
-			r = normalize_url(referrer)
-			t = normalize_url(target)
-			if not should_skip_host(t):
-				writer.writerow([r, t, num_clicks])
+			try:
+				r = normalize_url(referrer)
+				t = normalize_url(target)
+				if not should_skip_host(t):
+					writer.writerow([r, t, num_clicks])
+			except:
+				print "Couldn't normalize. Skipping."
+				print referrer
+				print target
 
 def worker(params):
 	return remove_unwanted(*params)
 
 def run_in_parallel():
 	params = []
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "full-domain", "month", "filtered-referrers--filtered-targets--no-iu", "*", "*", "*.txt"))
-	dest_dir = os.path.join(os.getenv("TD"), "vm", "full-domain", "month", "filtered-referrers--filtered-targets--no-iu--no-unwanted")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news-only", "level3-domain", "month", "filtered-referrers--filtered-targets--no-iu", "*", "*", "*.txt"))
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "news-only", "level3-domain", "month", "filtered-referrers--filtered-targets--no-iu--no-unwanted")
 	for f in files:
 		remainder, filename = os.path.split(f)
 		remainder, month = os.path.split(remainder)

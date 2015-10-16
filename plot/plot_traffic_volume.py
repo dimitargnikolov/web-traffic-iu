@@ -10,7 +10,7 @@ from matplotlib.ticker import MaxNLocator, LinearLocator
 from matplotlib import rcParams
 rcParams.update({'figure.autolayout': True})
 
-sys.path.append(os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), '..'))
+sys.path.append(os.getenv("TC"))
 from lib import read_results_file
 
 COLORS = ['#fdb863', '#e66101', '#b2abd2', '#5e3c99']
@@ -137,10 +137,10 @@ def line_plot(result_file, dest, order=None, inset_result_file=None, inset_title
 	
 if __name__ == "__main__":
 	line_plot(
-		os.path.join(os.getenv("TR"), "level2-month-volume.txt"), 
+		os.path.join(os.getenv("TR"), "level2-month-volume.tab"), 
 		os.path.join(os.getenv("TP"), "traffic-volume.pdf"), 
 		legend_pos="upper left", legend_cols=1,
 		ylabel="Clicks (Millions)",
 		order=[('email', 'Mail'), ('social', 'Social Media'), ('search', 'Search')],
-		inset_result_file=os.path.join(os.getenv("TR"), "news-full-month-volume.txt"), inset_title="News"
+		inset_result_file=os.path.join(os.getenv("TR"), "news-level3-month-volume.tab"), inset_title="News"
 	)

@@ -23,9 +23,9 @@ def run_in_parallel(src_files, dest_dir, num_to_sample):
 	results = p.map(worker, params)
 	
 def main():
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "categories", "*", "*", "*", "*.txt"))
-	dest = os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "over-time-samples", "categories")
-	run_in_parallel(files, dest, 1000)
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "categories-new", "*", "*", "*", "*.txt"))
+	dest = os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "over-time-samples", "categories")
+	run_in_parallel(files, dest, 50000)
 
 def test():
 	src = os.path.join(os.getenv("TD"), "vm", "test", "level3-domain", "month", "2007", "05", "2007-05.txt")

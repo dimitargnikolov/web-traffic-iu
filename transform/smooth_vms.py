@@ -57,8 +57,8 @@ def run_in_parallel(src_files, dest_dir, smooth_window):
 	results = p.map(worker, params)
 	
 def main():
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news-only", "full-domain", "month", "over-time-samples", "categories", "*", "*", "*", "*.txt"))
-	dest = os.path.join(os.getenv("TD"), "vm", "news-only", "full-domain", "month", "smooth", "categories")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "over-time-samples", "categories", "*", "*", "*", "*.txt"))
+	dest = os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "smooth-new-new", "categories")
 	run_in_parallel(files, dest, 3)
 
 def test():

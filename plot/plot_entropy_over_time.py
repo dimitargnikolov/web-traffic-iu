@@ -122,7 +122,7 @@ def line_plot(result_file, dest, inset_result_file=None, inset_title=None, order
 		
 	# add an inset to the figure
 	if inset_result_file is not None:
-		inset_ax = plt.axes([.51, .35, .45, .23])
+		inset_ax = plt.axes([.51, .45, .45, .23])
 		
 		inset_headers, inset_labels, inset_ys = read_results_file(inset_result_file)
 		inset_x = sorted(range(len(inset_labels)))

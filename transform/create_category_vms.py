@@ -39,8 +39,8 @@ def worker(params):
 
 def run_in_parallel():
 	params = []
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "filtered", "*", "*", "*.txt"))
-	dest_dir = os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "categories")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news-only", "level3-domain", "month", "filtered", "*", "*", "*.txt"))
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "news-only", "level3-domain", "month", "categories")
 	
 	cats = [
 		("search", SEARCH_ENGINES),

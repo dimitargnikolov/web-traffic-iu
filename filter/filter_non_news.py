@@ -33,8 +33,8 @@ def worker(params):
 
 def run_in_parallel():
 	params = []
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "full-domain", "month", "unfiltered", "*", "*", "*.txt"))
-	dest_dir = os.path.join(os.getenv("TD"), "vm", "news-only", "full-domain", "month", "unfiltered")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "unfiltered", "*", "*", "*.txt"))
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "news-only", "level3-domain", "month", "unfiltered")
 	for f in files:
 		remainder, filename = os.path.split(f)
 		remainder, month = os.path.split(remainder)
@@ -53,5 +53,4 @@ def test():
 	worker((src, dest))
 
 if __name__ == "__main__":
-	#test()
 	run_in_parallel()

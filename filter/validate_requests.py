@@ -1,7 +1,7 @@
 import sys, os, struct, re, datetime, time, glob, csv
 from multiprocessing import Pool
 
-sys.path.append(os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), '..'))
+sys.path.append(os.getenv("TC"))
 from lib import normalize_url
 
 # reading a request is accomplished in three stages:
@@ -19,7 +19,7 @@ TARGET = 2
 DIRECTION = 3
 AGENT = 4
 
-SKIP_LINES = ['?'*n for n in range(1, 6)]
+SKIP_LINES = ['?' * n for n in range(1, 6)]
 
 def parse_dt_from_filename(filepath):
 	m = re.search("(\d{4})\-(\d{2})\-(\d{2})\_(\d{2})\:(\d{2})\:(\d{2})", os.path.basename(filepath))

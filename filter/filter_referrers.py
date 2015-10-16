@@ -1,7 +1,7 @@
 import sys, os, numpy, csv, glob
 from multiprocessing import Pool
 
-sys.path.append(os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), '..'))
+sys.path.append(os.getenv("TC"))
 from lib import read_vm_file, domain_level, nth_level_domain
 
 # not used but included in case we decide to analyze these sources again
@@ -109,8 +109,8 @@ def worker(params):
 
 def run_in_parallel():
 	params = []
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "full-domain", "month", "unfiltered", "*", "*", "*.txt"))
-	dest_dir = os.path.join(os.getenv("TD"), "vm", "full-domain", "month", "filtered-referrers")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news-only", "level3-domain", "month", "unfiltered", "*", "*", "*.txt"))
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "news-only", "level3-domain", "month", "filtered-referrers")
 	for f in files:
 		remainder, filename = os.path.split(f)
 		remainder, month = os.path.split(remainder)
@@ -131,5 +131,4 @@ def test():
 	worker((src, dest))
 
 if __name__ == "__main__":
-	#test()
 	run_in_parallel()
