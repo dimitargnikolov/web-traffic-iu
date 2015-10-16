@@ -1,12 +1,14 @@
 # Preliminaries
-1. This is the code to reproduce the experiments in [Dimitar G Nikolov, Diego F. M. Oliveira, Alessandro Flammini, Filippo Menczer. Measuring Online Social Bubbles, 2015](http://arxiv.org/abs/1502.07162).
-2. Make sure that the following environmental variables are created on your machine: TC, TR, TP, TD (short for Traffic Code, Traffic Results, Traffic Plots and Traffic Data, respectively). For example, one way to do this is to put the following lines in your .bashrc file.```
+* This is the code to reproduce the experiments in [Dimitar G Nikolov, Diego F. M. Oliveira, Alessandro Flammini, Filippo Menczer. Measuring Online Social Bubbles, 2015](http://arxiv.org/abs/1502.07162).
+* Make sure that the following environmental variables are created on your machine: TC, TR, TP, TD (short for Traffic Code, Traffic Results, Traffic Plots and Traffic Data, respectively). For example, one way to do this is to put the following lines in your .bashrc file.
+```
 export TBASE="/l/nx/data/click/web-traffic"
 export TC="$TBASE/code"
 export TR="$TBASE/results"
 export TP="$TBASE/plots"
-export TD="$TBASE/data"```
-3. Go to http://cnets.indiana.edu/groups/nan/webtraffic/click-dataset/ and request the full dataset of web requests.
+export TD="$TBASE/data"
+```
+* Go to http://cnets.indiana.edu/groups/nan/webtraffic/click-dataset/ and request the full dataset of web requests.
 
 You can follow the following data path in running the experiments.
 
@@ -43,6 +45,7 @@ Convert to 2nd level domains and create a separate dataset for each category.
 2. Plot the traffic volume: plot/plot_traffic_volume.py
 
 # Overall Entropy Computations
+
 1. Using the results from the traffic volume computation, determine how many visits to sample from all time periods. In order not to lose any data points, we need to sample the lowest number of clicks for the lowest month, for the lowest category. E.g. if the lowest number of clicks ever is wikipedia in Sep 2006, so take that number.
 2. Run the sampling script passing it the number obtained above: filter/create_over_time_samples.py
   1. create_over_time_samples.py creates samples for each month. An alternative way to do this is to run filter/create_samples.py, which samples the *full* dataset multiple times. In the first case, the results have a temporal component, in the second, they don't.
@@ -50,6 +53,7 @@ Convert to 2nd level domains and create a separate dataset for each category.
 4. Plot the entropy that was just computed: plot/plot_entropy.py
  
 # Entropy Over Time Computations
+
 1. Using the results from the traffic volume computation, determine how many visits to sample per time period. 
 2. Run the sampling script passing it the number obtained above: filter/create_over_time_sample.py
 3. Create smoothing datasets for the different categories: transform/smooth_vms.py
@@ -57,13 +61,17 @@ Convert to 2nd level domains and create a separate dataset for each category.
 5. Plot the entropy that was just compute: plot/plot_entropy_over_time.py
 
 # Entropy vs Traffic Volume Computations
+
 1. Create random datasets with increasing numbers of requests: transform/create_volume_vs_entropy_dataset.py
 2. Compute the entropy versus traffic volume results: analyze/compute_entropy_vs_traffic_volume.py
 3. Plot the entropy and traffic volume just computed: plot/plot_entropy_vs_traffic_volume.py
 
-# Twitter and AOL Computations: see README in *twitter* directory.
+# Twitter and AOL Computations
+
+See README in *twitter* directory.
 
 # News
+
 1. Run scrapy to crawl the news sources from dmoz.org: in news/ run 'scrapy crawl NewsLinksSpider'
 2. Filter the news urls: news/filter_news_urls.py
 3. Filter the full-domain data by url: filter/filter_non_news.py
