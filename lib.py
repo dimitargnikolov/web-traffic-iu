@@ -1,4 +1,4 @@
-import csv, numpy as np, urlparse, fnmatch
+import csv, numpy as np, urlparse, fnmatch, string
 
 def binary_search(lst, val):
 	"""
@@ -111,7 +111,7 @@ def normalize_url(url):
 	>>> normalize_url('http://www.facebook.com:80/')
 	'facebook.com'
 	"""
-	url = unicode(url).encode('ascii', 'ignore')
+	url = filter(lambda char: char in string.printable, url)
 
 	idx = url.find("://")
 	if idx != -1:

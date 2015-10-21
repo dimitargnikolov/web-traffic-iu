@@ -1,7 +1,7 @@
 import sys, os, numpy, csv, glob
 from multiprocessing import Pool
 
-sys.path.append(os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), '..', 'filter'))
+sys.path.append(os.path.join(os.getenv("TC"), "filter"))
 from validate_requests import parse_dt_from_filename
 
 def create_vm(src, dest):
@@ -48,7 +48,7 @@ def main():
 	run_in_parallel(
 		glob.glob(os.path.join(os.getenv("TD"), "valid-requests", "*", "*", "*")),
 		os.path.join(os.getenv("TD"), "vm", "full-domain", "hour"),
-		10
+		16
     )
 		
 def test1():
@@ -56,18 +56,18 @@ def test1():
 	if not os.path.exists(os.path.dirname(dest)):
 		os.makedirs(os.path.dirname(dest))
 	create_vm(
-		os.path.join(os.getenv("TD"), "sample", "valid-requests", "2007", "05", "2007-05-19_00:00:00_+3600.click"), 
+		os.path.join(os.getenv("TD"), "valid-requests", "2007", "05", "2007-05-19_00:00:00_+3600.click"), 
 		dest
 	)
 
 def test2():
-	dest_dir = os.path.join(os.getenv("TD"), "vm", "test", "output")
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "test")
 	if not os.path.exists(dest_dir):
 		os.makedirs(dest_dir)
 	run_in_parallel(
-		glob.glob(os.path.join(os.getenv("TD"), "sample", "valid-requests", "*", "*", "*")), 
+		glob.glob(os.path.join(os.getenv("TD"), "valid-requests", "2007", "05", "2007-05-19_1*")), 
 		dest_dir,
-		2
+		5
 	)
 
 if __name__ == "__main__":

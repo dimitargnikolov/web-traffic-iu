@@ -164,19 +164,19 @@ def run_in_parallel(files, valid_dir, invalid_dir, num_processes):
 
 def test1():
 	validate_requests(
-		os.path.join(os.getenv("TD"), "sample", "original-requests", "2007", "05", "2007-05-19_00:00:00_+3600.click"), 
+		os.path.join(os.getenv("TD"), "raw-requests", "2007", "05", "2007-05-19_00:00:00_+3600.click"), 
 		os.path.join(os.getenv("TD"), "valid.txt"), 
 		os.path.join(os.getenv("TD"), "invalid.txt")
 	)
 
 def test2():
-	files = glob.glob(os.path.join(os.getenv("TD"), "sample", "original-requests", "*", "*", "*"))
-	valid_dir = os.path.join(os.getenv("TD"), "sample", "valid-requests")
-	invalid_dir = os.path.join(os.getenv("TD"), "sample", "invalid-requests")
+	files = glob.glob(os.path.join(os.getenv("TD"), "raw-requests", "*", "*", "*"))
+	valid_dir = os.path.join(os.getenv("TD"), "valid-requests")
+	invalid_dir = os.path.join(os.getenv("TD"), "invalid-requests")
 	run_in_parallel(files, valid_dir, invalid_dir, 2)
 
 def main():
-	files = glob.glob(os.path.join(os.getenv("TD"), "original-requests", "*", "*", "*"))
+	files = glob.glob(os.path.join(os.getenv("TD"), "raw-requests", "*", "*", "*"))
 	valid_dir = os.path.join(os.getenv("TD"), "valid-requests")
 	invalid_dir = os.path.join(os.getenv("TD"), "invalid-requests")
 	run_in_parallel(files, valid_dir, invalid_dir, 16)
