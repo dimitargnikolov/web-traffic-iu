@@ -64,7 +64,7 @@ def sample_vm(index, num_clicks_to_sample, catname):
 def worker(params):
 	return sample_vm(*params)
 
-def run_in_parallel(src_files, dest_dir, sample_sizes):
+def run_in_parallel(src_files, dest_dir, sample_sizes, num_processes):
 	files_by_cat = {}
 	for f in src_files:
 		remainder, filename = os.path.split(f)
@@ -85,7 +85,9 @@ def run_in_parallel(src_files, dest_dir, sample_sizes):
 	for i in range(len(cats)):
 		for sample_size in sample_sizes:
 			params.append((indices[i], sample_size, cats[i]))
-	p = Pool(processes=16)
+	params = sorted(params, key=lambda p: p[1])
+	print len(params)
+	p = Pool(processes=num_processes)
 	vms = p.map(worker, params)
 
 	# save the sampled vms
@@ -109,7 +111,7 @@ def main():
 	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "categories", "*", "*", "*", "*.txt"))
 	dest = os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "entropy-vs-volume")
 
-	run_in_parallel(files, dest, sample_sizes)
+	run_in_parallel(files, dest, sample_sizes, 10)
 
 def test():
 	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "test", "level2-domain", "month", "categories", "*", "*", "*", "*"))
