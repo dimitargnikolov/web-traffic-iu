@@ -47,8 +47,8 @@ def run_in_parallel(src_files, dest, num_processes):
 			writer.writerow(currrow)
 	
 def main():
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "categories", "*", "*", "*", "*.txt"))
-	dest = os.path.join(os.getenv("TR"), "volume-level2-month.csv")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "categories", "*", "*", "*", "*.txt"))
+	dest = os.path.join(os.getenv("TR"), "news-volume-full-month.csv")
 	run_in_parallel(files, dest, 16)
 
 def test():

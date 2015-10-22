@@ -158,7 +158,11 @@ UNWANTED_DOMAINS = frozenset([
 	'popcap.com',
 	'contextuads.com',
 	'valuead.com',
-	'coolonline.com'
+	'coolonline.com',
+	'yahoo-mail.com',
+	'postmasterlx.com',
+	'doubleverify.com',
+	'ytsa.net'
 ])
 
 UNWANTED_PATTERNS = frozenset([
@@ -224,8 +228,8 @@ def worker(params):
 
 def run_in_parallel():
 	params = []
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "filtered-referrers--filtered-targets--no-iu", "*", "*", "*.txt"))
-	dest_dir = os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "filtered-referrers--filtered-targets--no-iu--no-unwanted")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "filtered-referrers--filtered-targets--no-iu", "*", "*", "*.txt"))
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "filtered-referrers--filtered-targets--no-iu--no-unwanted")
 	for f in files:
 		remainder, filename = os.path.split(f)
 		remainder, month = os.path.split(remainder)

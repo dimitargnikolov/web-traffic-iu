@@ -142,5 +142,5 @@ if __name__ == "__main__":
 		legend_pos="upper left", legend_cols=1,
 		ylabel="Clicks (Millions)",
 		order=[('email', 'Mail'), ('social', 'Social Media'), ('search', 'Search')],
-		inset_result_file=os.path.join(os.getenv("TR"), "news-level3-month-volume.tab"), inset_title="News"
+		inset_result_file=os.path.join(os.getenv("TR"), "news-volume-full-month.csv"), inset_title="News"
 	)

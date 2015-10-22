@@ -10,7 +10,7 @@ from matplotlib.ticker import MaxNLocator, LinearLocator
 from matplotlib import rcParams
 rcParams.update({'figure.autolayout': True})
 
-sys.path.append(os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), '..'))
+sys.path.append(os.getenv("TC"))
 from lib import read_results_file
 	
 def create_nice_labels(labels):

@@ -25,8 +25,8 @@ def worker(params):
 
 def run_in_parallel():
 	params = []
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news-only", "full-domain", "month", "filtered-referrers--filtered-targets--no-iu--no-unwanted", "*", "*", "*.txt"))
-	dest_dir = os.path.join(os.getenv("TD"), "vm", "news-only", "full-domain", "month", "filtered-referrers--filtered-targets--no-iu--no-unwanted--no-junk")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "filtered-referrers--filtered-targets--no-iu--no-unwanted", "*", "*", "*.txt"))
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "filtered-referrers--filtered-targets--no-iu--no-unwanted--no-junk")
 	for f in files:
 		remainder, filename = os.path.split(f)
 		remainder, month = os.path.split(remainder)
@@ -36,8 +36,8 @@ def run_in_parallel():
 			os.makedirs(os.path.dirname(destf))
 		params.append((f, destf))
 	
-	p = Pool(processes=10)
-	results = p.map(worker, params)
+	p = Pool(processes=16)
+	p.map(worker, params)
 		
 def test():
 	src = os.path.join(os.getenv("TD"), "vm", "test", "full-domain", "month", "2007", "05", "2007-05.txt")
@@ -45,5 +45,4 @@ def test():
 	worker((src, dest))
 
 if __name__ == "__main__":
-	#test()
 	run_in_parallel()

@@ -41,10 +41,9 @@ def run_in_parallel(files, dest_dir):
 
 def main():
 	run_in_parallel(
-		glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "week", "categories", "*", "*", "*", "*.txt")),
-		os.path.join(os.getenv("TR"), "top-targets", "week")
+		glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "over-time-samples", "*", "*", "*", "*.txt")),
+		os.path.join(os.getenv("TR"), "top-targets", "month", "over-time-samples")
     )
 
 if __name__ == "__main__":
-	#test()
 	main()

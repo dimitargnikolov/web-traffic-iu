@@ -49,7 +49,7 @@ def test():
 	run_in_parallel(files, dest)
 
 def main():
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news-only", "full-domain", "month", "smooth", "categories", "*", "*", "*", "*.txt"))
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "smooth", "categories", "*", "*", "*", "*.txt"))
 	dest = os.path.join(os.getenv("TR"), "smooth-news-full-month-entropy.txt")
 	run_in_parallel(files, dest)
 

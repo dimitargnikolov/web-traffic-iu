@@ -10,7 +10,7 @@ from matplotlib.ticker import MaxNLocator, LinearLocator
 from matplotlib import rcParams
 rcParams.update({'figure.autolayout': True})
 
-sys.path.append(os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), '..'))
+sys.path.append(os.getenv("TC"))
 from lib import read_results_file
 
 def fill_missing_values(labels, ys):
@@ -86,7 +86,7 @@ def line_plot(result_file, dest, inset_result_file=None, inset_title=None, order
 
 	legend_str = legend_pos if legend_pos is not None else "upper right"
 	cols = legend_cols if legend_cols is not None else 2
-	ax.legend(curves, legend_labels, shadow=False, ncol=cols, prop=FontProperties(size=14), numpoints=1, bbox_to_anchor=(0.01, 0.25, 0.30, .2))
+	ax.legend(curves, legend_labels, shadow=False, ncol=cols, prop=FontProperties(size=12), numpoints=1, bbox_to_anchor=(-.04, 0.02, 0.30, .2))
 	
 	# display a subfigure id if this is going to be part of a subfigure
 	plt.figtext(0.025, 0.025, "b", fontsize=30, weight='bold')
@@ -122,7 +122,7 @@ def line_plot(result_file, dest, inset_result_file=None, inset_title=None, order
 		
 	# add an inset to the figure
 	if inset_result_file is not None:
-		inset_ax = plt.axes([.51, .45, .45, .23])
+		inset_ax = plt.axes([.385, .2, .45, .23])
 		
 		inset_headers, inset_labels, inset_ys = read_results_file(inset_result_file)
 		inset_x = sorted(range(len(inset_labels)))
@@ -150,11 +150,11 @@ def line_plot(result_file, dest, inset_result_file=None, inset_title=None, order
 	
 if __name__ == "__main__":
 	line_plot(
-		os.path.join(os.getenv("TR"), "smooth-level2-month-entropy.txt"), 
+		os.path.join(os.getenv("TR"), "entropy-level2-smooth.csv"),
 		os.path.join(os.getenv("TP"), "entropy-over-time.pdf"), 
 		legend_pos="center right", legend_cols=1,
 		ylabel="Entropy",
 		order=[('email', 'Mail'), ('social', 'Social Media'), ('search', 'Search')],
-		inset_result_file=os.path.join(os.getenv("TR"), "smooth-news-full-month-entropy.txt"), inset_title="News"
+		inset_result_file=os.path.join(os.getenv("TR"), "news-entropy-full-smooth.csv"), inset_title="News"
 	)
 

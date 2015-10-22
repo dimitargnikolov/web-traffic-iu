@@ -107,7 +107,7 @@ def main():
 		sample_sizes.append(int(10**n))
 
 	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "categories", "*", "*", "*", "*.txt"))
-	dest = os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "entropy-vs-volume", "categories")
+	dest = os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "entropy-vs-volume")
 
 	run_in_parallel(files, dest, sample_sizes)
 
@@ -119,5 +119,4 @@ def test():
 	run_in_parallel(files, dest_dir, [10, 100])
 
 if __name__ == "__main__":
-	#test()
 	main()

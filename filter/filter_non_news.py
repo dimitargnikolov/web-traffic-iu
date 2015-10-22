@@ -34,12 +34,13 @@ def worker(params):
 def run_in_parallel():
 	params = []
 	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "full-domain", "month", "*", "*", "*.txt"))
-	dest_dir = os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month")
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "unfiltered")
 	for f in files:
 		remainder, filename = os.path.split(f)
 		remainder, month = os.path.split(remainder)
 		_, year = os.path.split(remainder)
 		destf = os.path.join(dest_dir, year, month, filename)
+
 		if not os.path.exists(os.path.dirname(destf)):
 			os.makedirs(os.path.dirname(destf))
 		params.append((f, destf))

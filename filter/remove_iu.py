@@ -40,8 +40,8 @@ def worker(params):
 
 def run_in_parallel():
 	params = []
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "filtered-referrers--filtered-targets", "*", "*", "*.txt"))
-	dest_dir = os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "filtered-referrers--filtered-targets--no-iu")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "filtered-referrers--filtered-targets", "*", "*", "*.txt"))
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "filtered-referrers--filtered-targets--no-iu")
 	for f in files:
 		remainder, filename = os.path.split(f)
 		remainder, month = os.path.split(remainder)

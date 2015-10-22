@@ -6,7 +6,7 @@ from sample import sample_vm
 def worker(params):
 	return sample_vm(*params)
 
-def run_in_parallel(src_files, dest_dir, num_to_sample):
+def run_in_parallel(src_files, dest_dir, num_to_sample, num_processes):
 	params = []
 	for f in src_files:
 		remainder, filename = os.path.split(f)
@@ -19,21 +19,20 @@ def run_in_parallel(src_files, dest_dir, num_to_sample):
 			os.makedirs(os.path.dirname(dest))
 		params.append((f, dest, num_to_sample))
 			
-	p = Pool(processes=10)
-	results = p.map(worker, params)
+	p = Pool(processes=num_processes)
+	p.map(worker, params)
 	
 def main():
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "categories-new", "*", "*", "*", "*.txt"))
-	dest = os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "over-time-samples", "categories")
-	run_in_parallel(files, dest, 50000)
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "categories", "*", "*", "*", "*.txt"))
+	dest = os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "over-time-samples")
+	run_in_parallel(files, dest, 80000, 16)
 
 def test():
 	src = os.path.join(os.getenv("TD"), "vm", "test", "level3-domain", "month", "2007", "05", "2007-05.txt")
 	dest = os.path.join(os.getenv("TD"), "vm", "test", "output", "2007-05-sample.txt")
 	if not os.path.exists(os.path.dirname(dest)):
 		os.makedirs(os.path.dirname(dest))
-	worker((src, dest, 100))
+	worker((src, dest, 100, 2))
 
 if __name__ == "__main__":
-	#test()
 	main()
