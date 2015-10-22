@@ -12,8 +12,8 @@ def compute_traffic_volume(src):
 		total += num_clicks
 	return total
 
-def run_in_parallel(src_files, dest):
-	p = Pool(processes=10)
+def run_in_parallel(src_files, dest, num_processes):
+	p = Pool(processes=num_processes)
 	results = p.map(compute_traffic_volume, src_files)
 
 	print "Reducing results."
@@ -47,9 +47,9 @@ def run_in_parallel(src_files, dest):
 			writer.writerow(currrow)
 	
 def main():
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news-only", "level3-domain", "month", "categories", "*", "*", "*", "*.txt"))
-	dest = os.path.join(os.getenv("TR"), "news-level3-month-volume.tab")
-	run_in_parallel(files, dest)
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "categories", "*", "*", "*", "*.txt"))
+	dest = os.path.join(os.getenv("TR"), "news-volume-full-month.csv")
+	run_in_parallel(files, dest, 16)
 
 def test():
 	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "test", "level2-domain", "month", "categories", "*", "*", "*", "*.txt"))

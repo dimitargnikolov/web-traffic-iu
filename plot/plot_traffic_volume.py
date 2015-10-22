@@ -137,10 +137,10 @@ def line_plot(result_file, dest, order=None, inset_result_file=None, inset_title
 	
 if __name__ == "__main__":
 	line_plot(
-		os.path.join(os.getenv("TR"), "level2-month-volume.tab"), 
+		os.path.join(os.getenv("TR"), "volume-level2-month.csv"), 
 		os.path.join(os.getenv("TP"), "traffic-volume.pdf"), 
 		legend_pos="upper left", legend_cols=1,
 		ylabel="Clicks (Millions)",
 		order=[('email', 'Mail'), ('social', 'Social Media'), ('search', 'Search')],
-		inset_result_file=os.path.join(os.getenv("TR"), "news-level3-month-volume.tab"), inset_title="News"
+		inset_result_file=os.path.join(os.getenv("TR"), "news-volume-full-month.csv"), inset_title="News"
 	)

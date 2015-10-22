@@ -1,7 +1,7 @@
 import sys, os, csv, glob, random
 from multiprocessing import Pool
 
-sys.path.append(os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), '..'))
+sys.path.append(os.getenv("TC"))
 from lib import read_vm_file
 
 def smooth_vm(files, dest):
@@ -54,11 +54,11 @@ def run_in_parallel(src_files, dest_dir, smooth_window):
 				params.append((current_window, dest))
 
 	p = Pool(processes=10)
-	results = p.map(worker, params)
+	p.map(worker, params)
 	
 def main():
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "over-time-samples", "categories", "*", "*", "*", "*.txt"))
-	dest = os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "smooth-new-new", "categories")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "over-time-samples", "*", "*", "*", "*.txt"))
+	dest = os.path.join(os.getenv("TD"), "vm", "news", "full-domain", "month", "smooth")
 	run_in_parallel(files, dest, 3)
 
 def test():
@@ -69,5 +69,4 @@ def test():
 	run_in_parallel(files, dest, 3)
 
 if __name__ == "__main__":
-	#test()
 	main()

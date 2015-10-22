@@ -9,7 +9,10 @@ def create_vm(src, dest):
 	clicks = {}
 	with open(src, 'r') as f:
 		reader = csv.reader(f, delimiter="\t")
-		reader.next() # skip header line
+		try:
+			reader.next() # skip header line
+		except StopIteration:
+			return # file is empty
 		for row in reader:
 			timestamp, referrer, target = row
 			if referrer not in clicks:
@@ -52,11 +55,11 @@ def main():
     )
 		
 def test1():
-	dest = os.path.join(os.getenv("TD"), "vm", "test", "2007", "05", "2007-05-19-00-00.txt")
+	dest = os.path.join(os.getenv("TD"), "vm", "test", "2008", "04", "2008-04-29-00-00.txt")
 	if not os.path.exists(os.path.dirname(dest)):
 		os.makedirs(os.path.dirname(dest))
 	create_vm(
-		os.path.join(os.getenv("TD"), "valid-requests", "2007", "05", "2007-05-19_00:00:00_+3600.click"), 
+		os.path.join(os.getenv("TD"), "valid-requests", "2008", "04", "2008-04-29_19:00:00_+3600.click"), 
 		dest
 	)
 

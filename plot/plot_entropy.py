@@ -56,7 +56,7 @@ def draw_box(ax, index, median, mean, top, bottom, whisker_top, whisker_bottom, 
 
 def draw_boxes(ys, ax):
 	for i in range(len(ys)):
-		mean = numpy.mean(ys[i])
+		mean = np.mean(ys[i])
 		median = scoreatpercentile(ys[i], 50)
 		
 		top = scoreatpercentile(ys[i], BOX_TOP_PCTL)
@@ -134,9 +134,9 @@ def pbox_plot(results_file, dest, order=None, inset_results_file=None, inset_tit
 
 if __name__ == "__main__":
 	pbox_plot(
-		os.path.join(os.getenv("TR"), "gini-level2.txt"),
-		os.path.join(os.getenv("TP"), "gini-level2.pdf"), 
-		ylabel="1 - Gini", order=[('email', 'Mail'), ('social', 'Social Media'), ('search', 'Search')],
-		inset_results_file=os.path.join(os.getenv("TR"), "news-gini-full.txt"), 
+		os.path.join(os.getenv("TR"), "entropy-level2.csv"),
+		os.path.join(os.getenv("TP"), "entropy-level2.pdf"), 
+		ylabel="Entropy", order=[('email', 'Mail'), ('social', 'Social Media'), ('search', 'Search')],
+		inset_results_file=os.path.join(os.getenv("TR"), "news-entropy-full.csv"), 
 		inset_title="News"
     )

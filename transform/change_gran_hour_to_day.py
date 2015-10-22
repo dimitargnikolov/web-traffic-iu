@@ -1,7 +1,7 @@
 import sys, os, numpy, csv, glob, re
 from multiprocessing import Pool
 
-sys.path.append(os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), '..'))
+sys.path.append(os.getenv("TC"))
 from lib import read_vm_file
 
 def combine_files(files, destfile):
@@ -49,21 +49,22 @@ def run_in_parallel(files, dest_dir, num_processes):
 	results = p.map(worker, params)
 		
 def test1():
-	dest_dir = os.path.join(os.getenv("TD"), "sample", "vm", "2007", "05")
+	src_dir = os.path.join(os.getenv("TD"), "vm", "full-domain", "hour", "2007", "05")
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "test")
 	if not os.path.exists(dest_dir):
 		os.makedirs(dest_dir)
 	combine_files(
 		[
-			os.path.join(dest_dir, "2007-05-19-00-00.txt"), 
-			os.path.join(dest_dir, "2007-05-19-01-00.txt")
+			os.path.join(src_dir, "2007-05-19-00-00.txt"), 
+			os.path.join(src_dir, "2007-05-19-01-00.txt")
 		],
-		os.path.join(os.getenv("TD"), "sample", "vm", "2007", "05", "2007-05-19.txt")
+		os.path.join(dest_dir, "2007-05-19.txt")
 	)
 
 def test2():
 	run_in_parallel(
-		glob.glob(os.path.join(os.getenv("TD"), "sample", "vm", "*", "*", "2007-05-*-*-*.txt")),
-		os.path.join(os.getenv("TD"), "sample", "vm"), 
+		glob.glob(os.path.join(os.getenv("TD"), "vm", "full-domain", "hour", "*", "*", "2007-05-*-*-*.txt")),
+		os.path.join(os.getenv("TD"), "vm", "test"), 
 		2
     )
 
@@ -75,4 +76,4 @@ def main():
 	)
 
 if __name__ == "__main__":
-	test2()
+	main()
