@@ -1,9 +1,9 @@
 #!/bin/bash 
 #PBS -k o 
-#PBS -l nodes=1:ppn=16,walltime=5:00:00
+#PBS -l nodes=1:ppn=16,walltime=00:10:00
 #PBS -M dnikolov@indiana.edu
 #PBS -m abe 
 #PBS -N FilterBubble
 #PBS -j oe 
 
-python $TC/transform/create_vm.py
+python $TC/transform/change_gran_day_to_month.py

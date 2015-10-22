@@ -17,4 +17,4 @@ if __name__ == "__main__":
 		params.append((f, destf, 2))
 
 	p = Pool(processes=16)
-	results = p.map(worker, params)
+	p.map(worker, params)

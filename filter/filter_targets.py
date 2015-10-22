@@ -29,20 +29,19 @@ def worker(params):
 
 def run_in_parallel():
 	params = []
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "categories", "*", "*", "*", "*.txt"))
-	dest_dir = os.path.join(os.getenv("TD"), "vm", "level2-domain", "month", "categories-new")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "filtered-referrers", "*", "*", "*.txt"))
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "filtered-referrers--filtered-targets")
 	for f in files:
 		remainder, filename = os.path.split(f)
 		remainder, month = os.path.split(remainder)
-		remainder, year = os.path.split(remainder)
-		_, cat = os.path.split(remainder)
-		destf = os.path.join(dest_dir, cat, year, month, filename)
+		_, year = os.path.split(remainder)
+		destf = os.path.join(dest_dir, year, month, filename)
 		if not os.path.exists(os.path.dirname(destf)):
 			os.makedirs(os.path.dirname(destf))
 		params.append((f, destf))
 	
-	p = Pool(processes=10)
-	results = p.map(worker, params)
+	p = Pool(processes=16)
+	p.map(worker, params)
 		
 def test():
 	src = os.path.join(os.getenv("TD"), "vm", "test", "full-domain", "month", "2007", "05", "2007-05.txt")

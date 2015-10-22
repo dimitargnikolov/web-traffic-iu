@@ -39,8 +39,8 @@ def worker(params):
 
 def run_in_parallel():
 	params = []
-	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "news-only", "level3-domain", "month", "filtered", "*", "*", "*.txt"))
-	dest_dir = os.path.join(os.getenv("TD"), "vm", "news-only", "level3-domain", "month", "categories")
+	files = glob.glob(os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "filtered", "*", "*", "*.txt"))
+	dest_dir = os.path.join(os.getenv("TD"), "vm", "level3-domain", "month", "categories")
 	
 	cats = [
 		("search", SEARCH_ENGINES),
@@ -58,8 +58,8 @@ def run_in_parallel():
 				os.makedirs(os.path.dirname(destf))
 			params.append((f, destf, hosts))
 	
-	p = Pool(processes=10)
-	results = p.map(worker, params)
+	p = Pool(processes=16)
+	p.map(worker, params)
 		
 def test():
 	src = os.path.join(os.getenv("TD"), "vm", "test", "level3-domain", "month", "2007", "05", "2007-05.txt")
@@ -69,5 +69,4 @@ def test():
 	worker((src, dest, SOCIAL_MEDIA_PLATFORMS))
 
 if __name__ == "__main__":
-	#test()
 	run_in_parallel()

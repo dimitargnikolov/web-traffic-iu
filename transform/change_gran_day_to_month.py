@@ -3,7 +3,7 @@ from multiprocessing import Pool
 
 from change_gran_hour_to_day import worker
 
-sys.path.append(os.path.join(os.path.dirname(os.path.join(os.getcwd(), __file__)), '..'))
+sys.path.append(os.getenv("TC"))
 from lib import read_vm_file
 
 def run_in_parallel(files, dest_dir, num_processes):
@@ -26,18 +26,16 @@ def run_in_parallel(files, dest_dir, num_processes):
 	results = p.map(worker, params)
 		
 def test1():
-	dest_dir = os.path.join(os.getenv("TD"), "sample", "vm", "2007", "05")
-	if not os.path.exists(dest_dir):
-		os.makedirs(dest_dir)
+	base_dir = os.path.join(os.getenv("TD"), "vm", "test", "2007", "05")
 	worker((
-		glob.glob(os.path.join(os.getenv("TD"), "sample", "vm", "2007", "05", "2007-05-*.txt")),
-		os.path.join(dest_dir, "2007-05.txt")
+		glob.glob(base_dir,"2007-05-*.txt"),
+		os.path.join(base_dir, "2007-05.txt")
 	))
 
 def test2():
 	run_in_parallel(
-		glob.glob(os.path.join(os.getenv("TD"), "sample", "vm", "2007", "05", "2007-05-*.txt")),
-		os.path.join(os.getenv("TD"), "sample", "vm"),
+		glob.glob(os.path.join(os.getenv("TD"), "vm", "test", "2007", "05", "2007-05-*.txt")),
+		os.path.join(os.getenv("TD"), "vm", "test"),
 		2
 	)
 
@@ -45,7 +43,7 @@ def main():
 	run_in_parallel(
 		glob.glob(os.path.join(os.getenv("TD"), "vm", "full-domain", "day", "*", "*", "*.txt")),
 		os.path.join(os.getenv("TD"), "vm", "full-domain", "month"),
-		10
+		16
 	)
 
 if __name__ == "__main__":
